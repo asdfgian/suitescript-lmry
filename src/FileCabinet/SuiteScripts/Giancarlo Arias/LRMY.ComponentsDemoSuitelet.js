@@ -57,8 +57,8 @@ define(
             const { request, response } = context;
 
             const form = serverWidget.createForm({
-                title: "Component Gallery - Demo",
-                hideNavBar: false,
+                title: "Employees",
+                hideNavBar: true,
             });
 
             // SUBTABS
@@ -73,11 +73,11 @@ define(
             });
 
             // FIELD GROUPS
-            form.addFieldGroup({
-                id: "custpage_fg_basic",
-                label: "Basic fields",
-                tab: "custpage_tab_main",
-            });
+            // form.addFieldGroup({
+            //     id: "custpage_fg_basic",
+            //     label: "Basic fields",
+            //     tab: "custpage_tab_main",
+            // });
 
             form.addFieldGroup({
                 id: "custpage_fg_misc",
@@ -86,85 +86,85 @@ define(
             });
 
             // (HEADER / Main tab)
-            form
-                .addField({
-                    id: "custpage_txt_name",
-                    type: serverWidget.FieldType.TEXT,
-                    label: "Text (Name)",
-                    container: "custpage_fg_basic",
-                    tab: "custpage_tab_main",
-                })
-                .updateBreakType({ breakType: serverWidget.FieldBreakType.STARTROW });
+            // form
+            //     .addField({
+            //         id: "custpage_txt_name",
+            //         type: serverWidget.FieldType.TEXT,
+            //         label: "Text (Name)",
+            //         container: "custpage_fg_basic",
+            //         tab: "custpage_tab_main",
+            //     })
+            //     .updateBreakType({ breakType: serverWidget.FieldBreakType.STARTROW });
 
-            form.addField({
-                id: "custpage_txt_email",
-                type: serverWidget.FieldType.EMAIL,
-                label: "Email",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            });
+            // form.addField({
+            //     id: "custpage_txt_email",
+            //     type: serverWidget.FieldType.EMAIL,
+            //     label: "Email",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // });
 
-            form.addField({
-                id: "custpage_phone",
-                type: serverWidget.FieldType.PHONE,
-                label: "Phone",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            });
+            // form.addField({
+            //     id: "custpage_phone",
+            //     type: serverWidget.FieldType.PHONE,
+            //     label: "Phone",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // });
 
-            form.addField({
-                id: "custpage_password",
-                type: serverWidget.FieldType.PASSWORD,
-                label: "Password",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            });
+            // form.addField({
+            //     id: "custpage_password",
+            //     type: serverWidget.FieldType.PASSWORD,
+            //     label: "Password",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // });
 
-            form.addField({
-                id: "custpage_textarea",
-                type: serverWidget.FieldType.LONGTEXT,
-                label: "Long Text (textarea)",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            })
-            .updateLayoutType({ layoutType: serverWidget.FieldLayoutType.NORMAL });
+            // form.addField({
+            //     id: "custpage_textarea",
+            //     type: serverWidget.FieldType.LONGTEXT,
+            //     label: "Long Text (textarea)",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // })
+            // .updateLayoutType({ layoutType: serverWidget.FieldLayoutType.NORMAL });
 
             // SELECT y MULTISELECT
-            const selectField = form.addField({
-                id: "custpage_select_opt",
-                type: serverWidget.FieldType.SELECT,
-                label: "Select (single)",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            });
-            selectField.addSelectOption({
-                value: "",
-                text: "--- Seleccione ---",
-                isSelected: true,
-            });
-            selectField.addSelectOption({ value: "opt1", text: "Opción 1" });
-            selectField.addSelectOption({ value: "opt2", text: "Opción 2" });
-            selectField.addSelectOption({ value: "opt3", text: "Opción 3" });
+            // const selectField = form.addField({
+            //     id: "custpage_select_opt",
+            //     type: serverWidget.FieldType.SELECT,
+            //     label: "Select (single)",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // });
+            // selectField.addSelectOption({
+            //     value: "",
+            //     text: "--- Seleccione ---",
+            //     isSelected: true,
+            // });
+            // selectField.addSelectOption({ value: "opt1", text: "Opción 1" });
+            // selectField.addSelectOption({ value: "opt2", text: "Opción 2" });
+            // selectField.addSelectOption({ value: "opt3", text: "Opción 3" });
 
-            const multiField = form.addField({
-                id: "custpage_multiselect",
-                type: serverWidget.FieldType.MULTISELECT,
-                label: "Multi Select",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            });
-            multiField.addSelectOption({ value: "m1", text: "Multi 1" });
-            multiField.addSelectOption({ value: "m2", text: "Multi 2" });
-            multiField.addSelectOption({ value: "m3", text: "Multi 3" });
+            // const multiField = form.addField({
+            //     id: "custpage_multiselect",
+            //     type: serverWidget.FieldType.MULTISELECT,
+            //     label: "Multi Select",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // });
+            // multiField.addSelectOption({ value: "m1", text: "Multi 1" });
+            // multiField.addSelectOption({ value: "m2", text: "Multi 2" });
+            // multiField.addSelectOption({ value: "m3", text: "Multi 3" });
 
             // CHECKBOX / RADIO
-            form.addField({
-                id: "custpage_chk_active",
-                type: serverWidget.FieldType.CHECKBOX,
-                label: "Active?",
-                container: "custpage_fg_basic",
-                tab: "custpage_tab_main",
-            });
+            // form.addField({
+            //     id: "custpage_chk_active",
+            //     type: serverWidget.FieldType.CHECKBOX,
+            //     label: "Active?",
+            //     container: "custpage_fg_basic",
+            //     tab: "custpage_tab_main",
+            // });
 
             // // Radio group
             // form.addField({
