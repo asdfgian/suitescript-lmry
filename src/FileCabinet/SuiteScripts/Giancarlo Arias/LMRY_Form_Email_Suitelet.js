@@ -2,34 +2,43 @@
  * @NApiVersion 2.1
  * @NScriptType Suitelet
  */
-define(
-    [
-        "N/log",
-        "N/ui/serverWidget",
-        "N/url",
-        "N/runtime",
-        "N/search",
-        "N/email"
-    ],
+define([
+    "N/log",
+    "N/ui/serverWidget",
+    "N/url",
+    "N/runtime",
+    "N/search",
+    "N/email",
+],
     /**
      * @param{log} log
      * @param{serverWidget} serverWidget
+     * 
+     * URL= https://tstdrv1749318.app.netsuite.com/app/site/hosting/scriptlet.nl?script=5904&deploy=1
      */
     (log, serverWidget, url, runtime, search, email) => {
         class Email {
-            constructor(body, emails) {
+            constructor(body, emails, attachment, subject) {
                 this.body = body;
                 this.emails = emails;
+                this.subject = subject;
+                this.attachment = attachment || null;
             }
 
             send() {
-                this.emails.forEach((e) => {
-                    email.send({
+                this.emails.forEach((recipient) => {
+                    const options = {
                         author: 72589,
                         body: this.body,
-                        recipients: e,
-                        subject: "EJEMPLO",
-                    });
+                        recipients: recipient,
+                        subject: this.subject,
+                    };
+
+                    if (this.attachment) {
+                        options.attachments = [this.attachment];
+                    }
+
+                    email.send(options);
                 });
             }
         }
@@ -46,7 +55,7 @@ define(
 
             if (request.method === "GET") {
                 const form = serverWidget.createForm({
-                    title: "Ejercicio GAV",
+                    title: "Envío de correos",
                     hideNavBar: false,
                 });
 
@@ -74,7 +83,7 @@ define(
                 form.addField({
                     id: "custpage_rich_text",
                     type: serverWidget.FieldType.RICHTEXT,
-                    label: "Rich text",
+                    label: "Body",
                     container: "custpage_form",
                 });
                 //INPUTFILE
@@ -113,6 +122,7 @@ define(
 
                 //BUTTON
                 form.addSubmitButton({ label: "Submit" });
+                form.addResetButton({ label: "Clean" });
 
                 response.writePage({ pageObject: form });
             }
@@ -142,10 +152,6 @@ define(
                 }
 
                 log.debug({
-                    title: "Objeto POST (files)",
-                    details: request.files,
-                });
-                log.debug({
                     title: "Objeto POST (Params)",
                     details: request.parameters,
                 });
@@ -155,18 +161,30 @@ define(
                     custpage_rich_text,
                     custpage_sublistdata,
                 } = request.parameters;
-                const files = request.files
 
-                if (files) {
-                    const content = files.custpage_input
-                    log.debug({
-                        title: "File contents",
-                        details: content
-                    })
-                }
+                const fileUploaded = request.files.custpage_input || null;
 
                 const emails = custpage_sublistdata.split("\u0002"); //array
-                const emailObj = new Email(custpage_rich_text, emails);
+
+                let employeeName = '';
+
+                if (custpage_select_employee) {
+                    const empData = search.lookupFields({
+                        type: search.Type.EMPLOYEE,
+                        id: custpage_select_employee,
+                        columns: ['firstname', 'lastname']
+                    });
+
+                    employeeName = empData.firstname + ' ' + empData.lastname;
+                }
+
+                const emailObj = new Email(
+                    custpage_rich_text,
+                    emails,
+                    fileUploaded,
+                    "Hola te habla " + employeeName
+                );
+
                 emailObj.send();
                 response.write("Correo enviado");
             }
