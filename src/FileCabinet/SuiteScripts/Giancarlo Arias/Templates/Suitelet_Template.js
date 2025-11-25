@@ -12,7 +12,7 @@ define(["N/log", "./SuiteletComponent"], (log, suiteletComponent) => {
         // const id = rec.save();
 
         log.audit({
-            title: "businessLogic executed",
+            title: "Business Logic executed",
             details: `Customer: ${params.customer}`,
         });
     };
