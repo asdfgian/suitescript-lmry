@@ -4,18 +4,8 @@
  */
 define(
     ["N/record", "N/ui/serverWidget", "N/log", "N/search"],
-    /**
-     * @param{record} record
-     * @param{serverWidget} serverWidget
-     */
+
     (record, serverWidget, log, search) => {
-        /**
-         * Defines the Suitelet script trigger point.
-         * @param {Object} scriptContext
-         * @param {ServerRequest} scriptContext.request - Incoming request
-         * @param {ServerResponse} scriptContext.response - Suitelet response
-         * @since 2015.2
-         */
         const onRequest = (scriptContext) => {
             const { request, response } = scriptContext;
 
@@ -173,35 +163,40 @@ define(
 
                 results.forEach((result, index) => {
                     sublist.setSublistValue({
-                        id: 'custpage_col_vin',
+                        id: 'custpage_col_brand',
                         line: index,
-                        value: result.getValue('custrecord_lmry_vehicle_vin') || ''
+                        value: String(result.getValue('custrecord_lmry_vehicle_brand') ?? '')
+                    });
+
+                    sublist.setSublistValue({
+                        id: 'custpage_col_brand',
+                        line: index,
+                        value: String(result.getValue('custrecord_lmry_vehicle_brand') ?? '')
+                    });
+
+                    sublist.setSublistValue({
+                        id: 'custpage_col_brand',
+                        line: index,
+                        value: String(result.getValue('custrecord_lmry_vehicle_brand') ?? '')
+                    });
+
+                    sublist.setSublistValue({
+                        id: 'custpage_col_brand',
+                        line: index,
+                        value: String(result.getValue('custrecord_lmry_vehicle_brand') ?? '')
                     });
                     sublist.setSublistValue({
                         id: 'custpage_col_brand',
                         line: index,
-                        value: result.getValue('custrecord_lmry_vehicle_brand') || ''
+                        value: String(result.getValue('custrecord_lmry_vehicle_brand') ?? '')
                     });
+
                     sublist.setSublistValue({
-                        id: 'custpage_col_model',
+                        id: 'custpage_col_brand',
                         line: index,
-                        value: result.getValue('custrecord_lmry_vehicle_model') || ''
+                        value: String(result.getValue('custrecord_lmry_vehicle_brand') ?? '')
                     });
-                    sublist.setSublistValue({
-                        id: 'custpage_col_year',
-                        line: index,
-                        value: result.getValue('custrecord_lmry_vehicle_year') || ''
-                    });
-                    sublist.setSublistValue({
-                        id: 'custpage_col_color',
-                        line: index,
-                        value: result.getValue('custrecord_lmry_vehicle_color') || ''
-                    });
-                    sublist.setSublistValue({
-                        id: 'custpage_col_price',
-                        line: index,
-                        value: result.getValue('custrecord_lmry_vehicle_price') || ''
-                    });
+
                     sublist.setSublistValue({
                         id: 'custpage_col_owner',
                         line: index,

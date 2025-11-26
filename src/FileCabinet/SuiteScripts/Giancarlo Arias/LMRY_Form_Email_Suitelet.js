@@ -11,9 +11,6 @@ define([
     "N/email",
 ],
     /**
-     * @param{log} log
-     * @param{serverWidget} serverWidget
-     * 
      * URL= https://tstdrv1749318.app.netsuite.com/app/site/hosting/scriptlet.nl?script=5904&deploy=1
      */
     (log, serverWidget, url, runtime, search, email) => {
@@ -43,13 +40,6 @@ define([
             }
         }
 
-        /**
-         * Defines the Suitelet script trigger point.
-         * @param {Object} scriptContext
-         * @param {ServerRequest} scriptContext.request - Incoming request
-         * @param {ServerResponse} scriptContext.response - Suitelet response
-         * @since 2015.2
-         */
         const onRequest = (scriptContext) => {
             const { request, response } = scriptContext;
 

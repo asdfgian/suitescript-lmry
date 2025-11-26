@@ -7,10 +7,6 @@ define(["N/log", "N/ui/serverWidget"], (log, serverWidget) => {
      * @class SuiteletComponent
      */
     class SuiteletComponent {
-        /**
-         * @constructor
-         * @param {SuiteletComponentOptions} options - Configuration options for the Suitelet component.
-         */
         constructor(options) {
             options = options || {};
             this.params = options.params || {};
@@ -121,11 +117,6 @@ define(["N/log", "N/ui/serverWidget"], (log, serverWidget) => {
     }
 
     return {
-        /**
-         * Factory function to create a new instance of SuiteletComponent.
-         * @param {SuiteletComponentOptions} options - Configuration options for the component.
-         * @returns {SuiteletComponent} A new instance of the SuiteletComponent.
-         */
         create: function (options) {
             return new SuiteletComponent(options);
         },

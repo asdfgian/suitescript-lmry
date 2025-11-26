@@ -188,30 +188,26 @@ define(
                 id: "custpage_integer",
                 type: serverWidget.FieldType.INTEGER,
                 label: "Integer",
-                container: "custpage_fg_misc",
-                tab: "custpage_tab_adv",
+                container: "custpage_fg_misc"
             });
             form.addField({
                 id: "custpage_float",
                 type: serverWidget.FieldType.FLOAT,
                 label: "Float",
-                container: "custpage_fg_misc",
-                tab: "custpage_tab_adv",
+                container: "custpage_fg_misc"
             });
             form.addField({
                 id: "custpage_currency",
                 type: serverWidget.FieldType.CURRENCY,
                 label: "Currency",
-                container: "custpage_fg_misc",
-                tab: "custpage_tab_adv",
+                container: "custpage_fg_misc"
             });
 
             form.addField({
                 id: "custpage_date",
                 type: serverWidget.FieldType.DATE,
                 label: "Date",
-                container: "custpage_fg_misc",
-                tab: "custpage_tab_adv",
+                container: "custpage_fg_misc"
             });
 
             // form.addField({
@@ -226,8 +222,7 @@ define(
                 id: "custpage_timeofday",
                 type: serverWidget.FieldType.TIMEOFDAY,
                 label: "Time of Day",
-                container: "custpage_fg_misc",
-                tab: "custpage_tab_adv",
+                container: "custpage_fg_misc"
             });
 
             // INLINEHTML
@@ -235,8 +230,7 @@ define(
                 id: "custpage_inline_demo",
                 type: serverWidget.FieldType.INLINEHTML,
                 label: "Inline HTML Demo",
-                container: "custpage_fg_misc",
-                tab: "custpage_tab_adv",
+                container: "custpage_fg_misc"
             });
 
             // contenido HTML/JS simple
@@ -320,22 +314,22 @@ define(
                 sublist.setSublistValue({
                     id: "custpage_col_2",
                     line: i,
-                    value: new String(employees[i].name),
+                    value: String(employees[i].name),
                 });
                 sublist.setSublistValue({
                     id: "custpage_col_3",
                     line: i,
-                    value: new String(employees[i].subsidiary),
+                    value: String(employees[i].subsidiary),
                 });
                 sublist.setSublistValue({
                     id: "custpage_col_4",
                     line: i,
-                    value: new String(employees[i].title),
+                    value: String(employees[i].title),
                 });
                 sublist.setSublistValue({
                     id: "custpage_col_5",
                     line: i,
-                    value: new String(employees[i].email),
+                    value: String(employees[i].email),
                 });
             }
 

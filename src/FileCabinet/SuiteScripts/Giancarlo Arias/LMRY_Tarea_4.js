@@ -3,12 +3,6 @@
  * @NScriptType Restlet
  */
 define(["N/log", "N/record"],
-    /**
-     * @param{log} log
-     * @param{record} record
-     * 
-     * URL=https://tstdrv1749318.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=5961&deploy=1
-     */
     (log, record) => {
         const get = (req) => {
             try {
@@ -108,10 +102,16 @@ define(["N/log", "N/record"],
                 };
 
             } catch (error) {
+                if (error instanceof Error) {
+                    return {
+                        success: false,
+                        error: error.message,
+                    };
+                }
 
                 return {
                     success: false,
-                    error: error.message
+                    error: String(error),
                 };
             }
         }
@@ -194,10 +194,16 @@ define(["N/log", "N/record"],
                 };
 
             } catch (error) {
+                if (error instanceof Error) {
+                    return {
+                        success: false,
+                        error: error.message,
+                    };
+                }
 
                 return {
                     success: false,
-                    error: error.message
+                    error: String(error),
                 };
             }
         };

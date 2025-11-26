@@ -1,0 +1,23 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "suitecloud.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asdfgian/suitescript-lmry.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asdfgian/suitescript-lmry/issues"
+  },
+  "homepage": "https://github.com/asdfgian/suitescript-lmry#readme",
+  "devDependencies": {
+    "@btonasse/suitescript-types": "^2.3.0"
+  }
+}
