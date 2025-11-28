@@ -4,13 +4,11 @@
  */
 
 define(["N/render", "N/file", "N/log"], (render, file, log) => {
-
     /**
      * FreeMarkerProcessor
      * Utility class to load FreeMarker templates and render PDF/XLS files using NetSuite Render Module.
      */
     class FreeMarkerProcessor {
-
         /**
          * Initializes a new renderer instance.
          */
@@ -57,8 +55,7 @@ define(["N/render", "N/file", "N/log"], (render, file, log) => {
 
         _process() {
             try {
-                if (!this.templateId)
-                    throw new Error("Template ID not set.");
+                if (!this.templateId) throw new Error("Template ID not set.");
 
                 const templateFile = file.load({ id: this.templateId });
                 this.renderer.templateContent = templateFile.getContents();
@@ -66,14 +63,13 @@ define(["N/render", "N/file", "N/log"], (render, file, log) => {
                 if (!this.dataType)
                     throw new Error("Data type not specified. Use setDataType().");
 
-                if (!this.data)
-                    throw new Error("Data not set. Use setData().");
+                if (!this.data) throw new Error("Data not set. Use setData().");
 
                 if (this.dataType === "json") {
                     this.renderer.addCustomDataSource({
                         format: render.DataSource.JSON,
                         alias: this.alias,
-                        data: JSON.stringify(this.data)
+                        data: JSON.stringify(this.data),
                     });
                 }
 
@@ -81,10 +77,9 @@ define(["N/render", "N/file", "N/log"], (render, file, log) => {
                     this.renderer.addCustomDataSource({
                         format: render.DataSource.OBJECT,
                         alias: this.alias,
-                        data: this.data
+                        data: this.data,
                     });
                 }
-
             } catch (e) {
                 log.error("FreeMarkerProcessor Error (process)", e);
                 throw e;
@@ -99,11 +94,10 @@ define(["N/render", "N/file", "N/log"], (render, file, log) => {
             try {
                 this._process();
 
-                const pdfContent = this.renderer.renderAsPdf();
-                pdfContent.name = `${fileName}.pdf`;
+                const pdf = this.renderer.renderAsPdf();
+                pdf.name = `${fileName}.pdf`;
 
-                return pdfContent;
-
+                return pdf;
             } catch (e) {
                 log.error("FreeMarkerProcessor Error (PDF)", e);
                 throw e;
@@ -123,11 +117,10 @@ define(["N/render", "N/file", "N/log"], (render, file, log) => {
                 const excelFile = file.create({
                     name: `${fileName}.xls`,
                     fileType: file.Type.XMLDOC,
-                    contents: excelString
+                    contents: excelString,
                 });
 
                 return excelFile;
-
             } catch (e) {
                 log.error("FreeMarkerProcessor Error (Excel)", e);
                 throw e;

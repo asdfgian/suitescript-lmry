@@ -12,7 +12,6 @@ define(["N/ui/serverWidget", "N/search", "N/log", "./FreeMarkerProcessor"], (
      * @param {Object} scriptContext
      * @param {import("N/http").ServerRequest} scriptContext.request - Incoming request
      * @param {import("N/http").ServerResponse} scriptContext.response - Suitelet response
-     * @since 2015.2
      */
     const doGet = (scriptContext) => {
         const form = serverWidget.createForm({
@@ -46,32 +45,34 @@ define(["N/ui/serverWidget", "N/search", "N/log", "./FreeMarkerProcessor"], (
             title: "Reporte",
             columns: savedSearchResults.columns,
             rows: savedSearchResults.rows,
-        }
+        };
 
         //@ts-ignore
-        freeMarkerProcessor.setTemplateId("./FreeMarker-Templates/practice-reports-excel.ftl")
+        freeMarkerProcessor.setTemplateId(
+            "./FreeMarker-Templates/practice-reports-excel.ftl"
+        );
         //@ts-ignore
-        freeMarkerProcessor.setDataType('object')
+        freeMarkerProcessor.setDataType("object");
         //@ts-ignore
-        freeMarkerProcessor.setAlias('data')
+        freeMarkerProcessor.setAlias("data");
 
-        const fixedRows = searchData.rows.map(r => {
+        const fixedRows = searchData.rows.map((r) => {
             return { cols: r };
         });
 
         const fixedData = {
             title: searchData.title,
             columns: searchData.columns,
-            rows: fixedRows
+            rows: fixedRows,
         };
 
         //@ts-ignore
-        freeMarkerProcessor.setData(fixedData)
+        freeMarkerProcessor.setData(fixedData);
         //@ts-ignore
-        const excel = freeMarkerProcessor.renderToExcel('report')
+        const excel = freeMarkerProcessor.renderToExcel("report");
 
         scriptContext.response.writeFile({
-            file: excel
+            file: excel,
         });
     };
 
